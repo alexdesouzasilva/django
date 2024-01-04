@@ -7,3 +7,5 @@ Comandos git:
     git pull -u origin main
 ###############################################################
 
+Dentro da pasta settings, há um arquivo settings.py, nele contém configurações comum entre os ambientes, semelhante ao application.yaml do Spring Boot.
+
