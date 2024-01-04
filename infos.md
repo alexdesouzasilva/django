@@ -3,5 +3,7 @@ Comandos git:
     git commit -m ""
     git push -u origin main
     password: gerar token no github
+
+    git pull -u origin main
 ###############################################################
 
