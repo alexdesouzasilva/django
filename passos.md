@@ -6,5 +6,6 @@
 5. Executar aplicação DJango: python manage.py runserver
 
 ###Passos para criação de tabelas da aplicação:###
-1. python manage migrate
+1. python manage.py migrate (criará a estrutura principal de banco de dados)
+2. Criar super usuário: python manage.py createsuperuser
 
