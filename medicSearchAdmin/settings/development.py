@@ -6,6 +6,8 @@ DEBUG = True
 
 SECRET_KEY = 'alxDS0104'
 
+ALLOWED_HOSTS = ['127.0.0.1']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
