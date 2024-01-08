@@ -4,3 +4,7 @@
 
 4. Configurações do projeto detalhado em cada commit no github.
 5. Executar aplicação DJango: python manage.py runserver
+
+###Passos para criação de tabelas da aplicação:###
+1. python manage migrate
+
