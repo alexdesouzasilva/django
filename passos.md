@@ -5,10 +5,12 @@
 4. Configurações do projeto detalhado em cada commit no github.
 5. Executar aplicação DJango: python manage.py runserver
 
-### Passos para criação de tabelas da aplicação:###
+### Passos para criação de tabelas da aplicação:
 1. python manage.py migrate (criará a estrutura principal de banco de dados)
 2. Criar super usuário: python manage.py createsuperuser
 
 ### Criando Primeiro APP
 1. python manage.py startapp medicSearch
+
+### 
 
