@@ -12,5 +12,13 @@
 ### Criando Primeiro APP
 1. python manage.py startapp medicSearch
 
-### 
+### Criando tabelas, com base no módulo models
+makemigrations cria um novo arquivo na pasta migrations com as alterações feitas nas models ativas (declaradas no __init__py)
+
+Depois de rodar o comando de makemigrations, é necessário executar o comando migrate, que identifica um novo arquivo na pasta migrations e rodará as modificções descritas na base de dados
+
+Comandos:
+    1. python manage.py makemigrations medicSearch (medicSearch é o app onde está nossas models)
+
+    2. python manage.py migrate medicSearch
 
