@@ -1,7 +1,7 @@
 from medicSearch.models import *
 
-class City(models.Model):
-    state = models.ForeignKey(State, null=True, related_name='state', on_delete=models.SET_NULL)
+class Neighborhood(models.Model):
+    city = models.ForeignKey(City, null=True, related_name='city', on_delete=models.SET_NULL)
     name = models.CharField(null=False, max_length=20)
     status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -9,4 +9,4 @@ class City(models.Model):
 
 
     def __str__(self):
-        return '{} - {}'.format(self.name, self.state.name)
+        return '{} - {}'.format(self.name, self.city.name)
