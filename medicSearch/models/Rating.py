@@ -1,6 +1,6 @@
 from medicSearch.models import *
 
-class Reting(models.Model):
+class Rating(models.Model):
     user = models.ForeignKey(User, null=True, related_name='user', on_delete=models.CASCADE)
     user_rated = models.ForeignKey(User, related_name='avaliado', on_delete=models.CASCADE)
     value = models.DecimalField(max_digits=5, decimal_places=2)
