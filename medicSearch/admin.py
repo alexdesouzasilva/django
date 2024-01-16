@@ -5,9 +5,9 @@ from .models import *
 class ProfileAdmin(admin.ModelAdmin):
     search_fields = ('user__username',)
     readonly_fields = ('user',)
-    exclude = ('favorites', 'created_at', 'update_at',)
+    exclude = ('favorites', 'created_at', 'updated_at',)
     date_hierarchy = 'created_at'
-    list_display = ('user', 'role', 'birth', 'specialtiesList', 'addressesList',)
+    list_display = ('user', 'role', 'birthday',)
     list_display_links = ('user', 'role',)
     empty_value_display = '----'
     list_filter = ('user__is_active', 'role')
