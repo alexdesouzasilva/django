@@ -22,3 +22,6 @@ Comandos:
 
     2. python manage.py migrate medicSearch
 
+# Baixando biblioteca para trabalhar com upload. A lib não será usada diretamente, mas o django fará uso da mesma:
+    pip install Pillow
+
