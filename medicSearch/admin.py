@@ -29,6 +29,10 @@ class ProfileAdmin(admin.ModelAdmin):
     def addressesList(self, obj):
         return [i.name for i in obj.addresses.all()]
 
+    def birthday(self, obj):
+        if obj.birth:
+            return obj.birthday.strftime("%d/%m/%y")
+    birthday.empty_value_display = '__/__/__'
 
 # Register your models here.
 admin.site.register(Profile, ProfileAdmin)
