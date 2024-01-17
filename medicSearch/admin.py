@@ -3,15 +3,15 @@ from .models import *
 
 #criando classe e add atributo de filtro por data de criação
 class ProfileAdmin(admin.ModelAdmin):
+    # Cria um filtro de hierarquia com datas
     search_fields = ('user__username',)
     readonly_fields = ('user',)
     exclude = ('favorites', 'created_at', 'updated_at',)
     date_hierarchy = 'created_at'
-    list_display = ('user', 'role', 'birth', 'specialtiesList', 'addressesList')
+    list_display = ('user', 'role', 'birth', 'specialtiesList', 'addressesList',)
     list_display_links = ('user', 'role',)
     empty_value_display = '----'
     list_filter = ('user__is_active', 'role')
-
     fieldsets = (
         ('Usuário', {
             'fields': ('user', 'birthday', 'image')
@@ -31,8 +31,15 @@ class ProfileAdmin(admin.ModelAdmin):
 
     def birth(self, obj):
         if obj.birthday:
-            return obj.birthday.strftime("%d/%m/%y")
-    birth.empty_value_display = '__/__/__'
+            return obj.birthday.strftime("%d/%m/%Y")
+    birth.empty_value_display = '___/___/_____'
+
+    class Media:
+        css = {
+            "all": ("css/custom.css",)
+        }
+        js = ("js/custom.js",)
+        
 
 # Register your models here.
 admin.site.register(Profile, ProfileAdmin)
