@@ -12,6 +12,18 @@ class ProfileAdmin(admin.ModelAdmin):
     empty_value_display = '----'
     list_filter = ('user__is_active', 'role')
 
+    fieldsets = (
+        ('Usuário', {
+            'fields': ('user', 'birthday', 'image')
+        }),
+        ('Função', {
+            'fields': ('role',)
+        }),
+        ('Extras', {
+            'fields': ('specialties', 'addresses')
+        }),
+    )
+
 
 # Register your models here.
 admin.site.register(Profile, ProfileAdmin)
