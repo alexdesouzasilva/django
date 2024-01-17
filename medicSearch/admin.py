@@ -7,7 +7,7 @@ class ProfileAdmin(admin.ModelAdmin):
     readonly_fields = ('user',)
     exclude = ('favorites', 'created_at', 'updated_at',)
     date_hierarchy = 'created_at'
-    list_display = ('user', 'role', 'birthday',)
+    list_display = ('user', 'role', 'birthday', 'specialtiesList', 'addressesList')
     list_display_links = ('user', 'role',)
     empty_value_display = '----'
     list_filter = ('user__is_active', 'role')
@@ -23,6 +23,11 @@ class ProfileAdmin(admin.ModelAdmin):
             'fields': ('specialties', 'addresses')
         }),
     )
+
+    def specialtiesList(self, obj):
+        return [i.name for i in obj.specialties.all()]
+    def addressesList(self, obj):
+        return [i.name for i in obj.addresses.all()]
 
 
 # Register your models here.
