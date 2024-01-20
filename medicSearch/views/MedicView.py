@@ -18,8 +18,18 @@ def list_medics_view(request):
         medics = medics.filter(user__first_name__contains=name)
     if speciality is not None:
         medics = medics.filter(specialties__id=speciality)
+
+
     if neighborhood is not None:
         medics = medics.filter(addresses__neighborhood=neighborhood)
+
+    else:
+        if city is not None:
+            medics = medics.filter(addresses__neighborhood__city=city)
+        elif state is not None:
+            medics = medics.filter(addresses__neighborhood__city__state=state)
+
+
 
     print(medics.all())
 
