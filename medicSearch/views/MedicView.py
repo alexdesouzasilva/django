@@ -15,13 +15,14 @@ def list_medics_view(request):
 
     #Filtra médico de acordo com o nome
     if name is not None and name != '':
-        medics = medics.filter(user__first_name=name)
-    if speciality is not None and speciality != '':
-        medics = medics.filter(specialities_id=speciality)
+        medics = medics.filter(user__first_name__contains=name)
+    if speciality is not None:
+        medics = medics.filter(specialties__id=speciality)
+    if neighborhood is not None:
+        medics = medics.filter(addresses__neighborhood=neighborhood)
 
-        print(medics.all())
+    print(medics.all())
 
 
-    print(medics)
 
     return HttpResponse('Listagem de 1 ou mais médicos')

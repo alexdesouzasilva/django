@@ -33,7 +33,6 @@ class ProfileAdmin(admin.ModelAdmin):
         if obj.birthday:
             return obj.birthday.strftime("%d/%m/%Y")
     birth.empty_value_display = '___/___/_____'
-
     class Media:
         css = {
             "all": ("css/custom.css",)
