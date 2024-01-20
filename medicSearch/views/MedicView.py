@@ -10,7 +10,16 @@ def list_medics_view(request):
     state = request.GET.get("state")
 
     #Busca usando ORM do DJango
-    medic = Profile.objects.filter(role=2).all()
-    print(medic)
+    #Busca por perfis de médicos
+    medics = Profile.objects.filter(role=2)
+
+    #Filtra médico de acordo com o nome
+    if name is not None and name != '':
+        medics = medics.filter(user__first_name=name)
+
+        print(medics.all())
+
+
+    print(medics)
 
     return HttpResponse('Listagem de 1 ou mais médicos')
