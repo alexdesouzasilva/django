@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 #Add configuração de URLS
-from django.conf.urls import url, include
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
