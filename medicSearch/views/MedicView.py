@@ -16,6 +16,8 @@ def list_medics_view(request):
     #Filtra médico de acordo com o nome
     if name is not None and name != '':
         medics = medics.filter(user__first_name=name)
+    if speciality is not None and speciality != '':
+        medics = medics.filter(specialities_id=speciality)
 
         print(medics.all())
 
