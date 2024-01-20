@@ -10,7 +10,7 @@ def list_medics_view(request):
     state = request.GET.get("state")
 
     #Busca usando ORM do DJango
-    medic = Profile.objects.all()
+    medic = Profile.objects.filter(role=2).all()
     print(medic)
 
     return HttpResponse('Listagem de 1 ou mais médicos')
