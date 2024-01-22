@@ -9,6 +9,8 @@ def list_medics_view(request):
     city = request.GET.get("city")
     state = request.GET.get("state")
 
+
+    ###ORM - USANDO QUERYSET
     #Busca usando ORM do DJango
     #Busca por perfis de médicos
     medics = Profile.objects.filter(role=2)
