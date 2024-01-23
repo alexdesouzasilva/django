@@ -1,5 +1,6 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def home_view(request):
-    return HttpResponse('<h1>Hello, Maria Eduarda!! </h1>', status=200)
+    return render(request, 'home/home.html', status=200)
