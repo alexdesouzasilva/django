@@ -1,0 +1,14 @@
+body {
+    background-color: #F1F7FF;
+}
+
+#content form {
+    /*A margin top do formulário deverá ser metada da página menos 241px */
+    margin-top: calc(50vh -241px);
+    /*50vh - 241px ou seja, 50% da página menos 241 pixels*/
+     
+}
+
+#content form button {
+    width: 100%;
+}
