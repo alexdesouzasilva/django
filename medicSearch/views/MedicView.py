@@ -1,5 +1,6 @@
-from django.http import HttpResponse
 from medicSearch.models.Profile import Profile
+from django.shortcuts import render
+from django.db.models import Q
 
 
 def list_medics_view(request):
@@ -17,10 +18,10 @@ def list_medics_view(request):
 
     #Filtra médico de acordo com o nome
     if name is not None and name != '':
-        medics = medics.filter(user__first_name__contains=name)
+        medics = medics.filter(Q(user__first_name__contains=name) | Q(user__username__contains=name))
+
     if speciality is not None:
         medics = medics.filter(specialties__id=speciality)
-
 
     if neighborhood is not None:
         medics = medics.filter(addresses__neighborhood=neighborhood)
@@ -31,10 +32,9 @@ def list_medics_view(request):
         elif state is not None:
             medics = medics.filter(addresses__neighborhood__city__state=state)
 
+    #dicionário com valor da consulta SQL
+    context = {
+        'medics': medics
+    }
 
-
-    print(medics.all())
-
-
-
-    return HttpResponse('Listagem de 1 ou mais médicos')
+    return render(request, template_name='medic/medics.html', context=context, status=200)
