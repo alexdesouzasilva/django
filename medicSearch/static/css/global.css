@@ -18,14 +18,14 @@
     background-color: #CCC;
 }
 
-.bnt-card {
+.btn-card {
     width: 49.5%;
     float: left; /* Posiciona elmento à esquerda do seu elemento pai*/
     font-size: 0.9em;
 }
 
 /*O último elemento deverá ter margem à esquerda de 1%*/
-.bnt-card:last-child {
+.btn-card:last-child{
     margin-left: 1%;
 }
 
