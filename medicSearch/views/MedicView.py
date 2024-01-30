@@ -1,6 +1,7 @@
 from medicSearch.models.Profile import Profile
 from django.shortcuts import render
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 def list_medics_view(request):
@@ -31,10 +32,22 @@ def list_medics_view(request):
             medics = medics.filter(addresses__neighborhood__city=city)
         elif state is not None:
             medics = medics.filter(addresses__neighborhood__city__state=state)
+    #**Aqui finaliza a consulta***#
+
+    #Adicionando paginação:
+    if len(medics) > 0:
+        paginator = Paginator(medics, 8)
+        page = request.GET.get('page')
+        medics = paginator.get_page(page)
+
+    get_copy = request.GET.copy()
+    parameters = get_copy.pop('page', True) and get_copy.urlencode()
 
     #dicionário com valor da consulta SQL
     context = {
-        'medics': medics
+        'medics': medics,
+        #Add parameters da paginação
+        'parameters': parameters
     }
 
     return render(request, template_name='medic/medics.html', context=context, status=200)
