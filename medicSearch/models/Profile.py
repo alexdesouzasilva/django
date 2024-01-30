@@ -38,8 +38,10 @@ class Profile(models.Model):
     def show_scoring_average(self):
         from .Rating import Rating
         try:
+            #Filtra usuário avalidado e retorna a soma de seus valores de avaliação e a quantidade de avaliadores
             ratings = Rating.objects.filter(user_rated=self.user).aggregate(Sum('value'), Count('user'))
             if ratings['user__count'] > 0:
+                #Soma dos valores dividido pela quantidade de usuários que avaliou
                 scoring_average = ratings['value__sum'] / ratings['user__count']
                 scoring_average = round(scoring_average, 2) #Arredondando valor para duas casas decimais
                 return scoring_average
