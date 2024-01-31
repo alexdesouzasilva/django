@@ -36,11 +36,15 @@ def list_medics_view(request):
 
     #Adicionando paginação:
     if len(medics) > 0:
+
         paginator = Paginator(medics, 8)
         page = request.GET.get('page')
+        #Verifica qual página foi selecionada
         medics = paginator.get_page(page)
 
     get_copy = request.GET.copy()
+    #Para não perder os parâmetros da url nas trocas de página
+    #Pega os parâmetros atuais da url e remove o parâmetro page
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
 
     #dicionário com valor da consulta SQL
