@@ -37,7 +37,8 @@ def list_medics_view(request):
     #Adicionando paginação:
     if len(medics) > 0:
 
-        paginator = Paginator(medics, 8)
+        #Passando lista de médico para dentro da classe Paginator e definindo quantos itens deve ser apresentado.
+        paginator = Paginator(medics, 2)
         page = request.GET.get('page')
         #Verifica qual página foi selecionada
         medics = paginator.get_page(page)

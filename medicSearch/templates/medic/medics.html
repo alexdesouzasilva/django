@@ -27,7 +27,17 @@
                         </div>
                         <a href={% url 'profile' medic.user.id %} class="btn btn-primary btn-card">Ver médico</a>
                         {% if user.is_authenticated %}
-                        <button type="submit" class="btn btn-danger btn-card"><i class="fa fa-heart"></i> Favoritos</button>
+                        <form method="POST" action="/medic/favorite">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{medic.user.id}}" name="id">
+                            <input type="hidden" value="{{request.GET.page}}" id="page">
+                            <input type="hidden" value="{{request.GET.name}}" id="name">
+                            <input type="hidden" value="{{request.GET.speciality}}" id="speciality">
+                            <input type="hidden" value="{{request.GET.neighborhood}}" id="neighborhood">
+                            <input type="hidden" value="{{request.GET.city}}" id="city">
+                            <input type="hidden" value="{{request.GET.state}}" id="state">
+                            <button type="submit" class="btn btn-danger btn-card"><i class="fa fa-heart"></i> Favoritos</button>
+                        </form>
                         {% endif %}
                     </div>
                 </div>
@@ -47,7 +57,7 @@
                         </li>
                     {% endif %}
                         <li class="page-item">
-                            <a class="page-link" href="#">Página {{ medics.number }} de {{ medics.paginator.num_page }}.</a>
+                            <a class="page-link" href="#">Página {{ medics.number }} de {{ medics.paginator.num_pages }}.</a>
                         </li>
                     {% if medics.has_next %}
                         <li class="page-item">
