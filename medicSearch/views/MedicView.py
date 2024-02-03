@@ -38,7 +38,7 @@ def list_medics_view(request):
     if len(medics) > 0:
 
         #Passando lista de médico para dentro da classe Paginator e definindo quantos itens deve ser apresentado.
-        paginator = Paginator(medics, 2)
+        paginator = Paginator(medics, 8)
         page = request.GET.get('page')
         #Verifica qual página foi selecionada
         medics = paginator.get_page(page)
@@ -73,9 +73,9 @@ def add_favorite_view(request):
         profile.favorites.add(medic.user)
         profile.save()
         msg = "Favorito adicionado com sucesso"
-        _type = "sucess"
+        _type = "success"
     except Exception as e:
-        print("Error %s" % e)
+        print("Erro %s" % e)
         msg = "Um erro ocorreu ao salvar o médico nos favoritos"
         _type = "danger"
 
@@ -86,7 +86,7 @@ def add_favorite_view(request):
     if name:
         arguments += "&name=%s" % name
     if speciality:
-        arguments += "&speciality=%s" % speciality
+        arguments += "&specinality=%s" % speciality
     if neighborhood:
         arguments += "&neighborhood=%s" % neighborhood
     if city:

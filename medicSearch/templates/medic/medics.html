@@ -4,17 +4,10 @@
 {% block content %}
 <div id="content">
     <div class="container">
-
-        <div class="alert alert-info">
-            Foram encontrados: {{ medics | length }} medico(s)
-        </div>
-        
+        <div class="alert alert-info">Foram encontrados: {{ medics | length }} medico(s)</div>
         {% if request.GET.msg %}
-        <div class="alert alert-{{request.GET.type}}">
-            {{ request.GET.msg }}
-        </div>    
+        <div class="alert alert-{{request.GET.type}}">{{ request.GET.msg }}</div>
         {% endif %}
-
         <div class="row">
         {% for medic in medics %}
             <div class="col-xs-12 col-md-3 col-lg-3">
@@ -36,12 +29,12 @@
                         <form method="POST" action="/medic/favorite">
                             {% csrf_token %}
                             <input type="hidden" value="{{medic.user.id}}" name="id">
-                            <input type="hidden" value="{{request.GET.page}}" id="page">
-                            <input type="hidden" value="{{request.GET.name}}" id="name">
-                            <input type="hidden" value="{{request.GET.speciality}}" id="speciality">
-                            <input type="hidden" value="{{request.GET.neighborhood}}" id="neighborhood">
-                            <input type="hidden" value="{{request.GET.city}}" id="city">
-                            <input type="hidden" value="{{request.GET.state}}" id="state">
+                            <input type="hidden" value="{{request.GET.page}}" name="page">
+                            <input type="hidden" value="{{request.GET.name}}" name="name">
+                            <input type="hidden" value="{{request.GET.speciality}}" name="speciality">
+                            <input type="hidden" value="{{request.GET.neighborhood}}" name="neighborhood">
+                            <input type="hidden" value="{{request.GET.city}}" name="city">
+                            <input type="hidden" value="{{request.GET.state}}" name="state">
                             <button type="submit" class="btn btn-danger btn-card"><i class="fa fa-heart"></i> Favoritos</button>
                         </form>
                         {% endif %}
@@ -52,31 +45,19 @@
         </div>
         <div class="row">
             <nav aria-label="Page navigation" class="navigation">
-                <ul class="pagination">
-                    {% if medics.has_previous %}
-                        <!-- Perceba que usamos a variável parameters sempre para manter os parâmetros da url mesmo quando trocamos entre uma número de paginação e outro -->
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1"{{ parameters }}>&laquo; Primeiro</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ medics.previous_page_number }}{{ parameters }}">Anterior</a>
-                        </li>
-                    {% endif %}
-                        <li class="page-item">
-                            <a class="page-link" href="#">Página {{ medics.number }} de {{ medics.paginator.num_pages }}.</a>
-                        </li>
-                    {% if medics.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ medics.next_page_number }}{{ parameters }}">Próximo</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ medics.paginator.num_pages }}{{ parameters }}">Último &raquo;</a>
-                        </li>
-                    {% endif %}
-                </ul>
-
+              <ul class="pagination">
+                {% if medics.has_previous %}
+                  <!-- Perceba que usamos a variável parameters sempre para manter os parâmetros da url mesmo quando trocamos entre uma número de paginação e outro -->
+                  <li class="page-item"><a class="page-link" href="?page=1{{ parameters }}">&laquo; Primeiro</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ medics.previous_page_number }}{{ parameters }}">Anterior</a></li>
+                {% endif %}
+                  <li class="page-item"><a class="page-link" href="#">Página {{ medics.number }} de {{ medics.paginator.num_pages }}.</a></li>
+                {% if medics.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ medics.next_page_number }}{{ parameters }}">Próximo</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ medics.paginator.num_pages }}{{ parameters }}">Último &raquo;</a></li>
+                {% endif %}
+              </ul>
             </nav>
-
         </div>
     </div>
 </div>
