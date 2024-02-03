@@ -8,6 +8,12 @@
         <div class="alert alert-info">
             Foram encontrados: {{ medics | length }} medico(s)
         </div>
+        
+        {% if request.GET.msg %}
+        <div class="alert alert-{{request.GET.type}}">
+            {{ request.GET.msg }}
+        </div>    
+        {% endif %}
 
         <div class="row">
         {% for medic in medics %}
