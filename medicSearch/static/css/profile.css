@@ -1,0 +1,41 @@
+#image-profile {
+    width: 150px;
+    height: 150px;
+    background-size: contain; /** Para que a imagem caiba dentro do elemento*/
+    margin: 10px auto;
+    background-color: #CCC;
+    border-radius: 100%;
+}
+
+#badge-role {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1em;
+    float: left; /** Posicionado à esquerda do elemento pai*/
+    border-radius: 0;
+}
+
+#icon-edit {
+    width: 35.56px;
+    height: 35.56px;
+    border-radius: 0;
+    float: left;
+    text-align: center;
+    line-height: 35.56px; /** Altura da linha*/
+    color: #FFF;
+    font-weight: bold; /** Peso da fonte, ou seja, uma fonte mais forte*/
+    background-color: #157AF6;
+    position: absolute; /** Posicionar elemento*/
+    right: 20px; /** coordenadas da posição. Trabalha em conjunto com position*/
+}
+
+ul.list-group {
+    float: left; /** Flutuar à esquerda do elemento pai*/
+    width: 100%;
+}
+
+ul#days {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
