@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from medicSearch.models import Profile
 from django.core.paginator import Paginator
 
+
 def list_profile_view(request, id=None):
     profile = None
     if id is None and request.user.is_authenticated:
@@ -17,8 +18,10 @@ def list_profile_view(request, id=None):
         page = request.GET.get('page')
         favorites = paginator.get_page(page)
 
+
     context = {
         'profile': profile,
-        'favorites': favorites
+        'favorites': favorites,
     }
+
     return render(request, template_name='profile/profile.html', context=context, status=200)

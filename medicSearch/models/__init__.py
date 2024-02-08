@@ -8,7 +8,7 @@ ROLE_CHOICE = (
     (2, 'Médico'),
     (3, 'Paciente')
 )
-#Diz ao Django que Profile será uma tabela do banco de dados
+#Diz ao Django que os models abaixo serão uma tabela do banco de dados
 from .Rating import Rating
 from .DayWeek import DayWeek
 from .State import State
