@@ -9,7 +9,20 @@
         <div class="row">
             <form class="col-md-6 col-lg-4 offset-md-3 offset-lg-4" action="POST">
                 <div class="row">
+                    <!-- Proteção de ataques -->
                     {% csrf_token %}
+                    <!-- Campos user -->
+                    {% for f in userForm %}
+                        {% if not f.is_hidden %}
+                        <div class="form-group col-md-6">
+                            {{ f.label }}
+                            {{ f }}
+                        </div>
+                        {% else %}
+                            {{ f }}
+                        {% endif %}
+                    {% endfor %}
+                    <!-- Campos profile -->
                     {% for f in profileForm %}
                         {% if not f.is_hidden %}
                         <div class="form-group col-md-6">
