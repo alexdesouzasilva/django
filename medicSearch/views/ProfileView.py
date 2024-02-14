@@ -35,8 +35,22 @@ def list_profile_view(request, id=None):
 
 def edit_profile(request):
     profile = get_object_or_404(Profile, user=request.user)
-    profileForm = UserProfileFrom(instance=profile)
-    userForm = UserForm(instance=request.user)
+
+    emailUnused = True
+    if request.method == 'POST':
+        profileForm = UserProfileFrom(request.POST, instance=profile)
+        userForm = UserForm(request.POST, instance=request.user)
+
+        #Verifica se e-mail já foi usuado por outro perfil de usuário.
+        verifyEmail = Profile.objects.filter(user__email=request.POST['email']).exclude(user__id=request.user.id).first()
+        emailUnused = verifyEmail is None
+    else:
+        profileForm = UserProfileFrom(instance=profile)
+        userForm = UserForm(instance=request.user)
+
+    if profileForm.is_valid() and userForm.is_valid() and emailUnused:
+        profileForm.save()
+        userForm.save()
 
     context = {
         'profileForm': profileForm,
