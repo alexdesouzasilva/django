@@ -17,6 +17,8 @@
                         <div class="form-group col-md-6">
                             {{ f.label }}
                             {{ f }}
+                            {% for error in f.erros %}
+                            <div class="invalid-feedback" style="display: initial;">{{ error }}</div>
                         </div>
                         {% else %}
                             {{ f }}
@@ -28,6 +30,8 @@
                         <div class="form-group col-md-6">
                             {{ f.label }}
                             {{ f }}
+                            {% for error in f.erros %}
+                            <div class="invalid-feedback" style="display: initial;">{{error}}</div>
                         </div>
                         {% else %}
                             {{ f }}
