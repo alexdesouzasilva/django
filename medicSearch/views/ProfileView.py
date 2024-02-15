@@ -37,8 +37,10 @@ def edit_profile(request):
     profile = get_object_or_404(Profile, user=request.user)
 
     emailUnused = True
+    message = None
+
     if request.method == 'POST':
-        profileForm = UserProfileFrom(request.POST, instance=profile)
+        profileForm = UserProfileFrom(request.POST, request.FILES, instance=profile)
         userForm = UserForm(request.POST, instance=request.user)
 
         #Verifica se e-mail já foi usuado por outro perfil de usuário.
@@ -52,9 +54,19 @@ def edit_profile(request):
         profileForm.save()
         userForm.save()
 
+        message = {'type': 'success', 'text': 'Dados atualizados com sucesso'}
+    
+    else:
+        if request.method == 'POST':
+            if emailUnused:
+                message = {'type': 'danger', 'text': 'Dados inválidos'}
+            else:
+                message = {'type': 'warning', 'text': 'E-mail já usado por outro usuário'}
+
     context = {
         'profileForm': profileForm,
-        'userForm': userForm
+        'userForm': userForm,
+        'message': message
     }
 
     return render(request, template_name='user/profile.html', context=context, status=200)
