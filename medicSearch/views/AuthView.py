@@ -45,38 +45,35 @@ def register_view(request):
 
     if request.user.is_authenticated:
         return redirect('/')
-    
+
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         registerForm = RegisterForm(request.POST)
 
-
         if registerForm.is_valid():
-            #verifica usuário ou e-mail cadastrado
+            # Aqui verificamos se existe usuário ou e-mail com esse cadastro
             verifyUsername = User.objects.filter(username=username).first()
             verifyEmail = User.objects.filter(email=email).first()
 
             if verifyUsername is not None:
-                message = {'type': 'danger', 'text': 'Já existe usuário com esse username!'}
+                message = { 'type': 'danger', 'text': 'Já existe um usuário com este username!' }
             elif verifyEmail is not None:
-                message = {'type': 'danger', 'text': 'Já existe um usuário com esse e-mail'}
+                message = { 'type': 'danger', 'text': 'Já existe um usuário com este e-mail!' }
             else:
                 user = User.objects.create_user(username, email, password)
-
                 if user is not None:
-                    message = {'type': 'success', 'text': 'Conta criada com sucesso'}
+                    message = { 'type': 'success', 'text': 'Conta criada com sucesso!' }
                 else:
-                    message = {'type': 'danger', 'text': 'Um erro ocorreu ao tentar criar o usuário'}
-        
-        context = {
-            'form': registerForm,
-            'message': message,
-            'title': 'Registrar',
-            'button_text': 'Registrar',
-            'link_text': 'Login',
-            'link_href': '/login'
-        }
+                    message = { 'type': 'danger',  'text': 'Um erro ocorreu ao tentar criar o usuário.' }
 
-        return render(request, template_name='auth/auth.html', context=context, status=200)
+    context = {
+        'form': registerForm,
+        'message': message,
+        'title': 'Registrar',
+        'button_text': 'Registrar',
+        'link_text': 'Login',
+        'link_href': '/login'
+    }
+    return render(request, template_name='auth/auth.html', context=context, status=200)
