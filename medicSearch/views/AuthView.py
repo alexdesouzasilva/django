@@ -20,7 +20,11 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('/')
+                _next = request.GET.get('next')
+                if _next is not None:
+                    return redirect(_next)
+                else:
+                    return redirect('/')
             else:
                 message = {
                     'type': 'danger',
