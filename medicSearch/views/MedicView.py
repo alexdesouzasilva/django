@@ -150,4 +150,4 @@ def rate_medic(request, medic_id=None):
     }
 
 
-    return render(request, template_name='medid/rating.html', context=context, status=200)
+    return render(request, template_name='medic/rating.html', context=context, status=200)
